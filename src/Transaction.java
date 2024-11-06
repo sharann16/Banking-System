@@ -19,6 +19,9 @@ public class Transaction {
                 case 2:
                     withdraw(userId);
                     break;
+                case 3:
+                    balance(userId);
+                    break;
                 case 4:
                     transaction(userId);
                     break;
@@ -34,7 +37,8 @@ public class Transaction {
         System.out.println("Enter amount to deposite");
         double amt=sc.nextDouble();
         bankAccount.userDetail.get(userId).setbalance(bankAccount.userDetail.get(userId).getbalance()+amt);
-        bankAccount.userDetail.get(userId).setTransaction(String.valueOf(bankAccount.userDetail.get(userId).gettransactionHistory().add(dt+" "+String.valueOf(amt)+"DR")));
+        bankAccount.userDetail.get(userId).setTransaction(String.valueOf(dt+" "+String.valueOf(amt)+" "+"DR"));
+        bankAccount.userDetail.get(userId).setdeposite(amt);
         System.out.println("Balanece : "+bankAccount.userDetail.get(userId).getbalance());
     }
     public void withdraw(String userId){
@@ -42,15 +46,19 @@ public class Transaction {
         double amt=sc.nextDouble();
         if (bankAccount.userDetail.get(userId).getbalance()>amt){
             bankAccount.userDetail.get(userId).setbalance(bankAccount.userDetail.get(userId).getbalance()-amt);
-            bankAccount.userDetail.get(userId).setTransaction(String.valueOf(bankAccount.userDetail.get(userId).gettransactionHistory().add(String.valueOf(amt)+"CR")));
+            bankAccount.userDetail.get(userId).setTransaction(String.valueOf(dt+" " +String.valueOf(amt)+" "+"CR"));
+            bankAccount.userDetail.get(userId).setWithdraw(amt);
         }else{
             System.out.println("less amount");
         }
         System.out.println("Withdraw anmount"+amt);
         System.out.println("balance : "+bankAccount.userDetail.get(userId).getbalance());
     }
+    public void balance(String userId){
+        System.out.println(bankAccount.userDetail.get(userId).getbalance());
+    }
     public void transaction(String usseId){
-        Iterator<String> it= (Iterator<String>) bankAccount.userDetail.get(usseId).gettransactionHistory().iterator();
+        Iterator<String> it= (Iterator<String>) bankAccount.userDetail.get(usseId).gettransaction().iterator();
         while (it.hasNext()){
             System.out.println(it.next());
         }
