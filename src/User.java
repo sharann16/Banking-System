@@ -1,6 +1,4 @@
 import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Stream;
 
 public class User {
     private String accountNumber;
@@ -12,9 +10,12 @@ public class User {
     private String userName;
     private String userId;
     private int pass;
-    User(String accountNumber, String phno, String userName, String userId,int pass){
+    private String dob;
+    private String accountType;
+    User(String accountNumber, String phno, String userName, String userId,int pass,String dob,String accountType){
         this.accountNumber=accountNumber;
-
+        this.dob=dob;
+        this.accountType=accountType;
         this.userName=userName;
         this.phno=phno;
         this.userId=userId;
@@ -35,4 +36,6 @@ public class User {
     public int getPass(){return pass;}
     public LinkedList<Double> getdeposite(){return deposite;}
     public LinkedList<Double> getWithdraw(){return withdraw;}
+    public String getdob(){return dob;}
+    public String getaccountType(){return accountType;}
 }

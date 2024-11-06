@@ -5,12 +5,13 @@ public class Transaction {
     Transaction(BankAccount bankAccount){
         this.bankAccount=bankAccount;
     }
+    Loan loan=new Loan();
     Date dt = new Date();
     boolean t=true;
     Scanner sc=new Scanner(System.in);
     public void main(String userId){
         while (t){
-            System.out.println("1)Deposite\n2)Withdraw\n3)Balance\n4)transaction\n5)exit");
+            System.out.println("1)Deposite\n2)Withdraw\n3)Balance\n4)transaction\n5)Apply for loan\n6)Exit");
             int opt=sc.nextByte();
             switch (opt){
                 case 1:
@@ -26,11 +27,11 @@ public class Transaction {
                     transaction(userId);
                     break;
                 case 5:
+                    loan.loan(bankAccount,userId);
+                case 6:
                     t=false;
             }
         }
-
-
     }
 
     public void deposite(String userId){

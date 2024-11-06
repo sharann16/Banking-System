@@ -5,13 +5,11 @@ public  class Main{
     public static void main(String[] args){
         Scanner sc=new Scanner(System.in);
         BankAccount bankAccount=new BankAccount();
-        BankAccount a=bankAccount;//why
+//        BankAccount a=bankAccount;//why
          boolean t=true;
         while (t) {
         System.out.println("1)Create account\n2)Existing account");
         int opt=sc.nextInt();
-
-
             switch (opt) {
                 case 1:
                     sc.nextLine();
@@ -19,22 +17,6 @@ public  class Main{
                     String userName = sc.nextLine();
                     System.out.println("enter phone number");
                     String phno = sc.nextLine();
-
-
-
-//                    DateTimeFormatter formate=DateTimeFormatter.ofPattern("yyyy-mm-dd");
-//                    LocalDate Dob=null;
-//                    while(Dob==null){
-//                        System.out.println("D.O.B formate yyyy-mm-dd");
-//                        String dob=sc.nextLine();
-//                        try{
-//                            Dob=LocalDate.parse(dob,formate);
-//                        }catch (){
-//
-//                        }
-//                    }
-
-
                     String userId = userName.substring(0, 3) + phno.substring(7);
                     Random ram = new Random();
                     long random = ram.nextLong(10000, 99999);
@@ -43,7 +25,7 @@ public  class Main{
                     System.out.println("User Id : " + userId);
                     System.out.println("Set 4 digit Password : ");
                     int pass = sc.nextInt();
-                    bankAccount.user(accno, phno, userName, userId, pass);
+                    bankAccount.user(accno, phno, userName, userId, pass,"3","4");
                     break;
                 case 2:
                     sc.nextLine();
@@ -53,7 +35,7 @@ public  class Main{
                     int pass2 = sc.nextInt();
                     if (bankAccount.userDetail.containsKey(userid)) {
                         if (bankAccount.userDetail.get(userid).getPass() == pass2) {
-                            Transaction trans = new Transaction(a);
+                            Transaction trans = new Transaction(bankAccount);
                             trans.main(userid);
                         } else {
                             System.out.println("invalid password");
