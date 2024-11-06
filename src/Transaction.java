@@ -1,9 +1,9 @@
 import java.util.*;
 import java.time.LocalDate;
 public class Transaction {
-    public BankAccount ba;
-    Transaction(BankAccount ob){
-        ba=ob;
+    public BankAccount bankAccount;
+    Transaction(BankAccount bankAccount){
+        this.bankAccount=bankAccount;
     }
     Date dt = new Date();
     boolean t=true;
@@ -33,24 +33,24 @@ public class Transaction {
     public void deposite(String userId){
         System.out.println("Enter amount to deposite");
         double amt=sc.nextDouble();
-        ba.det.get(userId).setbalance(ba.det.get(userId).getbalance()+amt);
-        ba.det.get(userId).setTransaction(String.valueOf(ba.det.get(userId).gettransactionHistory().add(dt+" "+String.valueOf(amt)+"DR")));
-        System.out.println("Balanece : "+ba.det.get(userId).getbalance());
+        bankAccount.userDetail.get(userId).setbalance(bankAccount.userDetail.get(userId).getbalance()+amt);
+        bankAccount.userDetail.get(userId).setTransaction(String.valueOf(bankAccount.userDetail.get(userId).gettransactionHistory().add(dt+" "+String.valueOf(amt)+"DR")));
+        System.out.println("Balanece : "+bankAccount.userDetail.get(userId).getbalance());
     }
     public void withdraw(String userId){
         System.out.println("enter amount multiple of 100");
         double amt=sc.nextDouble();
-        if (ba.det.get(userId).getbalance()>amt){
-            ba.det.get(userId).setbalance(ba.det.get(userId).getbalance()-amt);
-            ba.det.get(userId).setTransaction(String.valueOf(ba.det.get(userId).gettransactionHistory().add(String.valueOf(amt)+"CR")));
+        if (bankAccount.userDetail.get(userId).getbalance()>amt){
+            bankAccount.userDetail.get(userId).setbalance(bankAccount.userDetail.get(userId).getbalance()-amt);
+            bankAccount.userDetail.get(userId).setTransaction(String.valueOf(bankAccount.userDetail.get(userId).gettransactionHistory().add(String.valueOf(amt)+"CR")));
         }else{
             System.out.println("less amount");
         }
         System.out.println("Withdraw anmount"+amt);
-        System.out.println("balance : "+ba.det.get(userId).getbalance());
+        System.out.println("balance : "+bankAccount.userDetail.get(userId).getbalance());
     }
     public void transaction(String usseId){
-        Iterator<String> it= (Iterator<String>) ba.det.get(usseId).gettransactionHistory().iterator();
+        Iterator<String> it= (Iterator<String>) bankAccount.userDetail.get(usseId).gettransactionHistory().iterator();
         while (it.hasNext()){
             System.out.println(it.next());
         }
