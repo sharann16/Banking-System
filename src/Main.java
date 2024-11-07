@@ -1,3 +1,6 @@
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.*;
 import java.time.format.DateTimeFormatter;
@@ -5,36 +8,31 @@ public  class Main{
     public static void main(String[] args){
         Scanner sc=new Scanner(System.in);
         BankAccount bankAccount=new BankAccount();
-//        BankAccount a=bankAccount;//why
+        NewUser newuser=new NewUser();
          boolean t=true;
+
         while (t) {
-        System.out.println("1)Create account\n2)Existing account");
-        int opt=sc.nextInt();
+            System.out.println("============================================");
+            System.out.println("====== Console Based - Banking System ======");
+            System.out.println("============================================");
+            System.out.println("\nWelcome to Banking");
+            System.out.println("1. New User Registration");
+            System.out.println("2. Login with User ID");
+            System.out.println("3. Exit");
+            System.out.println("Enter your option: ");
+            int opt=sc.nextInt();
             switch (opt) {
                 case 1:
-                    sc.nextLine();
-                    System.out.println("enter user name");
-                    String userName = sc.nextLine();
-                    System.out.println("enter phone number");
-                    String phno = sc.nextLine();
-                    String userId = userName.substring(0, 3) + phno.substring(7);
-                    Random ram = new Random();
-                    long random = ram.nextLong(10000, 99999);
-                    String accno = random + phno.substring(5);
-                    System.out.println("Account Number : " + accno);
-                    System.out.println("User Id : " + userId);
-                    System.out.println("Set 4 digit Password : ");
-                    int pass = sc.nextInt();
-                    bankAccount.user(accno, phno, userName, userId, pass,"3","4");
+                    newuser.generateNewUser(bankAccount);
                     break;
                 case 2:
                     sc.nextLine();
                     System.out.println("Enter your user id");
                     String userid = sc.nextLine();
                     System.out.println("Enter your password");
-                    int pass2 = sc.nextInt();
+                    String pass2 = sc.nextLine();
                     if (bankAccount.userDetail.containsKey(userid)) {
-                        if (bankAccount.userDetail.get(userid).getPass() == pass2) {
+                        if (bankAccount.userDetail.get(userid).getPass() .equals( pass2)) {
                             Transaction trans = new Transaction(bankAccount);
                             trans.main(userid);
                         } else {

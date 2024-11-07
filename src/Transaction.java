@@ -1,3 +1,7 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 import java.time.LocalDate;
 public class Transaction {
@@ -10,6 +14,7 @@ public class Transaction {
     boolean t=true;
     Scanner sc=new Scanner(System.in);
     public void main(String userId){
+
         while (t){
             System.out.println("1)Deposite\n2)Withdraw\n3)Balance\n4)transaction\n5)Apply for loan\n6)Exit");
             int opt=sc.nextByte();
@@ -28,19 +33,28 @@ public class Transaction {
                     break;
                 case 5:
                     loan.loan(bankAccount,userId);
+                    break;
                 case 6:
                     t=false;
             }
         }
     }
-
     public void deposite(String userId){
-        System.out.println("Enter amount to deposite");
-        double amt=sc.nextDouble();
-        bankAccount.userDetail.get(userId).setbalance(bankAccount.userDetail.get(userId).getbalance()+amt);
-        bankAccount.userDetail.get(userId).setTransaction(String.valueOf(dt+" "+String.valueOf(amt)+" "+"DR"));
-        bankAccount.userDetail.get(userId).setdeposite(amt);
-        System.out.println("Balanece : "+bankAccount.userDetail.get(userId).getbalance());
+        double amt=0;
+        try{
+            System.out.println("Enter amount to deposite");
+            amt=sc.nextDouble();
+            if(amt>0){
+                bankAccount.userDetail.get(userId).setbalance(bankAccount.userDetail.get(userId).getbalance()+amt);
+                bankAccount.userDetail.get(userId).setTransaction(String.valueOf(dt+" "+String.valueOf(amt)+" "+"DR"));
+                bankAccount.userDetail.get(userId).setdeposite(amt);
+                System.out.println("Balanece : "+bankAccount.userDetail.get(userId).getbalance());
+            }
+
+        }catch (Exception e){
+            System.out.println("Enter a valid Amount");
+            deposite(userId);
+        }
     }
     public void withdraw(String userId){
         System.out.println("enter amount multiple of 100");
