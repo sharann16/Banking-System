@@ -7,8 +7,9 @@ import java.time.format.DateTimeFormatter;
 public  class Main{
     public static void main(String[] args){
         Scanner sc=new Scanner(System.in);
+        //creating object for BamkAccount
         BankAccount bankAccount=new BankAccount();
-        NewUser newuser=new NewUser();
+
          boolean t=true;
 
         while (t) {
@@ -23,25 +24,14 @@ public  class Main{
             int opt=sc.nextInt();
             switch (opt) {
                 case 1:
+                    //cretung object for New user and pass the bankAccount object to the generate new user method
+                    NewUser newuser=new NewUser();
                     newuser.generateNewUser(bankAccount);
                     break;
                 case 2:
-                    sc.nextLine();
-                    System.out.println("Enter your user id");
-                    String userid = sc.nextLine();
-                    System.out.println("Enter your password");
-                    String pass2 = sc.nextLine();
-                    if (bankAccount.userDetail.containsKey(userid)) {
-                        if (bankAccount.userDetail.get(userid).getPass() .equals( pass2)) {
-                            Transaction trans = new Transaction(bankAccount);
-                            trans.main(userid);
-                        } else {
-                            System.out.println("invalid password");
-                        }
-                    } else {
-                        System.out.println("Account not found");
-                    }
-
+                    //cretung object for Existinguser and pass the bankAccount object to the existinguser method
+                    ExistingUser existing=new ExistingUser();
+                    existing.existinguser(bankAccount);
                     break;
             }
         }

@@ -12,6 +12,8 @@ public class User {
     private String pass;
     private String dob;
     private String accountType;
+
+    //creating constructor for getting the initial details.
     User(long accountNumber, String phno, String userName, String userId,String pass,String dob,String accountType,double initialAmount){
         this.accountNumber=accountNumber;
         this.dob=dob;
@@ -22,12 +24,14 @@ public class User {
         this.pass=pass;
         this.balance=initialAmount;
     }
+
+    //setter starts
     public void setdeposite(double amt){this.deposite.add(amt);}
     public void setWithdraw(double amt){this.withdraw.add(amt);}
     public void setbalance(double amt){this.balance=amt;}
     public void setTransaction(String teansaction){this.transaction.add(teansaction);}
-    //getter
 
+    //getter starts
     public long getaccountNumber(){return accountNumber;}
     public double getbalance(){return balance;}
     public LinkedList<String> gettransaction(){return transaction;}

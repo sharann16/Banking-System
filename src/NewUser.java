@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 import java.util.*;
 
 public class NewUser {
-
+//getting the bank account object from main
     public void generateNewUser(BankAccount bankAccount){
         Scanner in = new Scanner(System.in);
         String userName=new String();
@@ -125,6 +125,8 @@ public class NewUser {
                 System.out.println("Invalid amount");
             }
         }
+
+        //using the object we call the method and pass the initial details
         bankAccount.userInitialDetail(accNumber,phoneNumber,userName,userId,passWord,dOB,accountType,initialAmount);
 
     }

@@ -6,12 +6,24 @@ import java.util.HashMap;
 
 
 public class BankAccount   {
-
+//creating hashmap for storing the user information
     HashMap<String,User> userDetail=new HashMap<>();
+
+
+    //creating method for storing the detail of the user .
+    //thest detail fre from the new user class
     public void userInitialDetail(long accountNumber, String phno, String userName, String userId,String pass,String dob,String accountType,double initialAmount){
+
+        //creating constructoe for the User class to set the initial details and pass the values.
         User use=new User(accountNumber,phno, userName, userId,pass,dob,accountType,initialAmount);
+
+        //put the detail into hashmap
+        //use is the object of the User class that store the user information.
         userDetail.put(userId,use);
     }
+
+
+
  public void file(ObjectOutputStream obs,BankAccount bankAccount){
      try {
          obs.writeObject(bankAccount.userDetail);
